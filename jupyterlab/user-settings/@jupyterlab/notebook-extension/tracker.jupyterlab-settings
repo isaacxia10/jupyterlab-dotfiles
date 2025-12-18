@@ -1,0 +1,16 @@
+{
+    "maxNumberOutputs": 50,
+    "showEditorForReadOnlyMarkdown": false,
+    "codeCellConfig": {
+        "lineNumbers": true,
+        "lineWrap": "off",
+        "matchBrackets": true,
+        "autoClosingBrackets": true
+    },
+    "markdownCellConfig": {
+        "lineNumbers": false,
+        "matchBrackets": true
+    },
+    "recordTiming": true,
+    "windowingMode": "full"
+}

@@ -1,0 +1,25 @@
+/* Full width notebook cells for Jupyter Notebook 7 / JupyterLab */
+:root {
+    --jp-notebook-max-width: 100%;
+}
+
+.jp-Notebook {
+    --jp-notebook-max-width: 100% !important;
+}
+
+.jp-Cell {
+    max-width: 100% !important;
+}
+
+.jp-CodeCell,
+.jp-MarkdownCell {
+    max-width: 100% !important;
+}
+
+/* Optional: Adjust font size for better readability */
+/* Uncomment to use:
+:root {
+    --jp-code-font-size: 14px;
+    --jp-content-font-size1: 15px;
+}
+*/

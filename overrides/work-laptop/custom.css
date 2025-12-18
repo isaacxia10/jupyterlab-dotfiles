@@ -1,0 +1,5 @@
+/* Work laptop: Smaller font for presentations */
+:root {
+    --jp-code-font-size: 12px;
+    --jp-content-font-size1: 13px;
+}
