@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # bootstrap.sh
 # Complete machine bootstrap script for JupyterLab configuration
-# Usage: curl -fsSL https://raw.githubusercontent.com/USER/dotfiles/main/scripts/bootstrap.sh | bash
+# Usage: curl -fsSL https://raw.githubusercontent.com/isaacxia10/jupyterlab-dotfiles/main/scripts/bootstrap.sh | bash
 
 set -euo pipefail
 
@@ -9,7 +9,7 @@ set -euo pipefail
 # Configuration
 #######################################
 
-DOTFILES_REPO="${DOTFILES_REPO:-https://github.com/USER/dotfiles.git}"
+DOTFILES_REPO="${DOTFILES_REPO:-https://github.com/isaacxia10/jupyterlab-dotfiles.git}"
 DOTFILES_DIR="${DOTFILES_DIR:-$HOME/.dotfiles}"
 MACHINE_ID="${MACHINE_ID:-$(hostname -s)}"
 
