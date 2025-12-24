@@ -5,7 +5,7 @@ Synchronize JupyterLab settings across multiple machines with machine-specific o
 ## Features
 
 - 🔄 **Deep JSON Merge**: Override specific keys without losing shared settings
-- 🖥️ **Machine-Specific Overrides**: Different themes, vim mappings, or CSS per machine
+- 🖥️ **Machine-Specific Overrides**: Different themes, shortcuts, or CSS per machine
 - 🔗 **Symlink or Copy**: Choose your deployment strategy
 - ✅ **JSON Validation**: Automatic validation with helpful error messages
 - 🎨 **CSS Concatenation**: Append machine-specific CSS to shared base
@@ -25,9 +25,41 @@ cd ~/.dotfiles
 
 # Or use auto-detected hostname
 ./scripts/bootstrap.sh
+
+# Apply shell configuration
+./scripts/apply-shell-configs.sh
+
+# Install shell tools (macOS)
+brew install starship bat eza zoxide fzf git-delta zsh-autosuggestions zsh-syntax-highlighting
+
+# Install JupyterLab extensions
+uv pip install jupyterlab-vim jupyterlab-execute-time
 ```
 
-### Option 2: Manual Application
+#### WSL (Windows Subsystem for Linux)
+
+```bash
+# Clone this repo
+git clone https://github.com/isaacxia10/jupyterlab-dotfiles.git ~/.dotfiles
+cd ~/.dotfiles
+
+# See comprehensive WSL setup guide
+cat WSL_SETUP.md
+
+# Quick install with Cargo
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+source "$HOME/.cargo/env"
+cargo install starship bat eza zoxide git-delta
+
+# Install JupyterLab extensions
+uv pip install jupyterlab-vim jupyterlab-execute-time
+
+# Apply configurations
+./scripts/apply-jupyter-configs.sh
+./scripts/apply-shell-configs.sh
+```
+
+### Option 2: JupyterLab Only
 
 ```bash
 cd ~/.dotfiles
@@ -52,10 +84,8 @@ dotfiles/
 │   │   │   │   └── tracker.jupyterlab-settings # Line numbers, timing
 │   │   │   └── shortcuts-extension/
 │   │   │       └── shortcuts.jupyterlab-settings
-│   │   ├── jupyterlab-execute-time/
-│   │   │   └── *.jupyterlab-settings           # Cell execution time
-│   │   └── jupyterlab-vimrc/
-│   │       └── plugin.jupyterlab-settings      # Vim mappings
+│   │   └── jupyterlab-execute-time/
+│   │       └── *.jupyterlab-settings           # Cell execution time
 │   ├── workspaces/
 │   │   └── default.jupyterlab-workspace        # Saved layouts
 │   └── custom.css                              # Base CSS
@@ -105,46 +135,11 @@ Settings are **deep merged** using `jq`. Override files only need to specify key
 }
 ```
 
-### Example: Vim Mappings
-
-**Shared** (`jupyterlab/user-settings/jupyterlab-vimrc/plugin.jupyterlab-settings`):
-```json
-{
-    "imap": [
-        ["jk", "<Esc>"]
-    ],
-    "nmap": [
-        ["H", "^"],
-        ["L", "$"]
-    ]
-}
-```
-
-**Override** (`overrides/work-laptop/user-settings/jupyterlab-vimrc/plugin.jupyterlab-settings`):
-```json
-{
-    "imap": [
-        ["jj", "<Esc>"]
-    ],
-    "nmap": [
-        ["<Space>w", ":w<CR>"]
-    ]
-}
-```
-
-**Result on work-laptop** (arrays are replaced, not merged):
-```json
-{
-    "imap": [
-        ["jj", "<Esc>"]
-    ],
-    "nmap": [
-        ["<Space>w", ":w<CR>"]
-    ]
-}
-```
-
 ⚠️ **Note**: JSON arrays are **replaced entirely**, not merged. If you override an array, provide all desired values.
+
+### Vim Configuration
+
+For vim keybindings in JupyterLab 4, see [jupyterlab/VIM_KEYBINDINGS.md](jupyterlab/VIM_KEYBINDINGS.md) for setup instructions and customization options.
 
 ## CSS Concatenation
 
@@ -229,8 +224,9 @@ export MACHINE_ID="work-laptop"  # or "home-desktop", etc.
 cd ~/.dotfiles
 ./scripts/bootstrap.sh
 
-# 4. Install JupyterLab
-pip install jupyterlab jupyterlab-vim jupyterlab-vimrc jupyterlab-execute-time
+# 4. Install JupyterLab (using uv)
+# If you don't have uv: curl -LsSf https://astral.sh/uv/install.sh | sh
+uv pip install jupyterlab jupyterlab-vim jupyterlab-execute-time
 
 # 5. Launch
 jupyter lab
@@ -308,8 +304,8 @@ find dotfiles -name "*.jupyterlab-settings" -exec sh -c 'jq empty "{}" 2>&1 || e
 
 ### Daily Workflow
 ```bash
-# Edit settings
-vim ~/.dotfiles/jupyterlab/user-settings/jupyterlab-vimrc/plugin.jupyterlab-settings
+# Edit settings (e.g., theme, shortcuts)
+vim ~/.dotfiles/jupyterlab/user-settings/@jupyterlab/apputils-extension/themes.jupyterlab-settings
 
 # Apply changes
 cd ~/.dotfiles

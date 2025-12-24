@@ -129,9 +129,10 @@ main() {
     echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
     echo ""
     log_info "Next steps:"
-    echo "  1. Install Python and JupyterLab: pip install jupyterlab"
-    echo "  2. Install extensions: pip install jupyterlab-vim jupyterlab-vimrc jupyterlab-execute-time"
-    echo "  3. Launch: jupyter lab"
+    echo "  1. Install uv (if not already): curl -LsSf https://astral.sh/uv/install.sh | sh"
+    echo "  2. Install JupyterLab: uv pip install jupyterlab"
+    echo "  3. Install extensions: uv pip install jupyterlab-vim jupyterlab-execute-time"
+    echo "  4. Launch: uv run jupyter lab"
     echo ""
 }
 

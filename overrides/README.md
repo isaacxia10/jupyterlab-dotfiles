@@ -8,11 +8,9 @@ This directory contains machine-specific configuration overrides that merge with
 overrides/
 ├── MACHINE_ID/
 │   ├── user-settings/
-│   │   ├── @jupyterlab/
-│   │   │   └── apputils-extension/
-│   │   │       └── themes.jupyterlab-settings  # Override theme
-│   │   └── jupyterlab-vimrc/
-│   │       └── plugin.jupyterlab-settings      # Override vim mappings
+│   │   └── @jupyterlab/
+│   │       └── apputils-extension/
+│   │           └── themes.jupyterlab-settings  # Override theme
 │   └── custom.css                               # Appended to base CSS
 ```
 
