@@ -9,6 +9,16 @@
             "command": "notebook:run-cell",
             "keys": ["Ctrl Enter"],
             "selector": ".jp-Notebook:focus"
+        },
+        {
+            "command": "vim:enter-insert-mode",
+            "selector": ".jp-NotebookPanel[data-jp-vim-mode='true'] .jp-Notebook.jp-mod-commandMode:not(.jp-mod-readWrite) :focus",
+            "keys": ["Shift I"]
+        },
+        {
+            "command": "notebook:enter-edit-mode",
+            "selector": ".jp-NotebookPanel[data-jp-vim-mode='true'] .jp-Notebook.jp-mod-commandMode",
+            "keys": ["Ctrl O"]
         }
     ]
 }
